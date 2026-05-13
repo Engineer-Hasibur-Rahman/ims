@@ -1,5 +1,5 @@
-﻿namespace ims.Application.DTOs
-{
+﻿namespace ims.Application.DTOs;
+
     public class ApiResponseDto<T>
     {
         public bool Success { get; set; }
@@ -21,4 +21,4 @@
             Errors = errors.ToList()
         };
     }
-}
+
