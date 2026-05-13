@@ -1,8 +1,10 @@
-﻿namespace ims.Domain.Entities
+﻿using ims.Domain.Entities.Base;
+
+namespace ims.Domain.Entities;
+
+    public class ProductStock : BaseEntity
 {
-    public class ProductStock
-    {
-        public int Id { get; set; }
+        public new int Id { get; set; }
 
         public int ProductId { get; set; }
 
@@ -12,6 +14,6 @@
 
         public int ReservedQty { get; set; } = 0;
 
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public new DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
-}
+

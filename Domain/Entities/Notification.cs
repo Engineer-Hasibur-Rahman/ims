@@ -1,6 +1,8 @@
-﻿namespace ims.Domain.Entities
-{
-    public class Notification : BaseEntaity
+﻿using ims.Domain.Entities.Base;
+
+namespace ims.Domain.Entities;
+
+public class Notification : BaseEntity
     {
         public Guid? UserId { get; set; }
 
@@ -10,4 +12,4 @@
         public bool IsRead { get; set; }
         public DateTime? ReadAt { get; set; }
     }
-}
+

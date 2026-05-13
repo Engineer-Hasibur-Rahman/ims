@@ -6,11 +6,13 @@ using ims.Infrastructure.Data;
 using ims.Infrastructure.Identity;
 using ims.Shared.Constants;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
-namespace ims.Application.Services
+
+namespace ims.Application.Services;
+
+public class AuthService : IAuthService
 {
-    public class AuthService
-    {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -318,5 +320,17 @@ namespace ims.Application.Services
         {
             return _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString() ?? "unknown";
         }
-    }
+
+        private static LoginResponseDto MapUser(ApplicationUser user, IEnumerable<string> roles, IEnumerable<string> permissions)
+        {
+            return new LoginResponseDto
+            {
+                UserId = user.Id,
+                Email = user.Email ?? string.Empty,
+                FullName = $"{user.FirstName} {user.LastName}".Trim(),
+                Roles = roles.ToList(),
+                Permissions = permissions.ToList()
+            };
+        }
 }
+

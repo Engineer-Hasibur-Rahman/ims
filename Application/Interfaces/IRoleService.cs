@@ -1,9 +1,8 @@
 ﻿using ims.Application.DTOs;
 
-namespace ims.Application.Interfaces
+namespace ims.Application.Interfaces;
+
+public interface IRoleService
 {
-    public class IRoleService
-    {
-        Task<ApiResponseDto<IEnumerable<string>>> GetAllRolesAsync();
-    }
+    Task<ApiResponseDto<IEnumerable<string>>> GetAllRolesAsync();
 }

@@ -1,9 +1,9 @@
-﻿namespace ims.Application.DTOs.Auth
-{
+﻿namespace ims.Application.DTOs.Auth;
+
     public class UpdateProfileDto
     {
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string? ProfileImage { get; set; }
     }
-}
+

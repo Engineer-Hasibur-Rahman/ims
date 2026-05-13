@@ -1,11 +1,12 @@
 ﻿using ims.Application.DTOs;
+using ims.Application.Interfaces;
 using ims.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace ims.Application.Services
+namespace ims.Application.Services;
+
+    public class RoleService : IRoleService
 {
-    public class RoleService
-    {
         private readonly RoleManager<ApplicationRole> _roleManager;
 
         public RoleService(RoleManager<ApplicationRole> roleManager)
@@ -19,4 +20,4 @@ namespace ims.Application.Services
             return ApiResponseDto<IEnumerable<string>>.Ok(roles, "Roles retrieved successfully.");
         }
     }
-}
+

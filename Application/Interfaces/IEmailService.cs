@@ -1,6 +1,6 @@
-﻿namespace ims.Application.Interfaces
+﻿namespace ims.Application.Interfaces;
+
+public interface IEmailService
 {
-    public class IEmailService
-    {
-    }
+    Task SendAsync(string to, string subject, string body);
 }

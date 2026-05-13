@@ -1,10 +1,12 @@
-﻿namespace ims.Domain.Entities
-{
-    public class Supplier
-    {
-        public int Id { get; set; }
+﻿using ims.Domain.Entities.Base;
 
-        public string Name { get; set; }
+namespace ims.Domain.Entities;
+
+public class Supplier : BaseEntity
+    {
+        public new int Id { get; set; }
+
+        public string Name { get; set; } = string.Empty;
 
         public string? ContactName{ get; set; }
 
@@ -37,4 +39,4 @@
 
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
-}
+

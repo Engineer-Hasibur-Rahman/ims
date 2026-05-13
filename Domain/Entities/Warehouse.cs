@@ -1,20 +1,14 @@
-﻿namespace ims.Domain.Entities
+﻿using ims.Domain.Entities.Base;
+
+namespace ims.Domain.Entities;
+
+public class Warehouse : BaseEntity
 {
-    public class Warehouse
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string? Location { get; set; }
-
-        public string? Phone { get; set; }
-
-        public string? Email { get; set; }     
-        public bool IsActive { get; set; } = true;
-
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-    }
+    public new int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string? Location { get; set; }
+    public string? Phone { get; set; }
+    public string? Email { get; set; }
+    public bool IsActive { get; set; } = true;
 }
+
