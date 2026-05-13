@@ -7,23 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Interfaces\" />
-    <Folder Include="Application\DTOs\" />
     <Folder Include="Application\Mappings\" />
     <Folder Include="Application\Validators\" />
     <Folder Include="Application\Services\" />
-    <Folder Include="Domain\Enums\" />
-    <Folder Include="Domain\Interfaces\" />
     <Folder Include="Filters\" />
     <Folder Include="Hubs\" />
-    <Folder Include="Infrastructure\Identity\" />
-    <Folder Include="Infrastructure\Services\" />
     <Folder Include="Infrastructure\Repositories\" />
     <Folder Include="Middleware\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Shared\Constants\" />
-    <Folder Include="Shared\Helpers\" />
-    <Folder Include="Shared\Result\" />
     <Folder Include="Shared\Pagination\" />
   </ItemGroup>
 
