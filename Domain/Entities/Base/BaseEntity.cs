@@ -1,21 +1,13 @@
-﻿namespace ims.Domain.Entities.Base;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
+
+namespace ims.Domain.Entities.Base;
 
 public abstract class BaseEntity
 {
-
-    //  Why BaseEntity exists:
-    //Remove duplication
-    //Standard audit tracking
-    //Enable soft delete
-    //Maintain consistency
-    //Required for ERP-level systems
-
-    // Why abstract:
-    //Prevent direct creation
-    //Force inheritance only
-    //Enforce design consistency
-
-    public Guid Id { get; set; } = Guid.NewGuid();
+    [Key]
+    public int Id { get; set; }
+    public Guid StringId { get; set; } = Guid.NewGuid();
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

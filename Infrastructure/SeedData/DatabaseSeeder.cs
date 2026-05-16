@@ -10,6 +10,7 @@ public static class DatabaseSeeder
 {
     public static async Task SeedAsync(IServiceProvider services)
     {
+        Console.WriteLine("🔥 SEEDER CALLED"); //  ADD HERE
         using var scope = services.CreateScope();
 
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();

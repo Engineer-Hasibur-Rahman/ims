@@ -4,7 +4,6 @@ namespace ims.Domain.Entities;
 
 public class Warehouse : BaseEntity
 {
-    public new int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string? Location { get; set; }
     public string? Phone { get; set; }

@@ -1,11 +1,11 @@
 ﻿using ims.Domain.Entities.Base;
+using static ims.Shared.Constants.Permissions;
 
 namespace ims.Domain.Entities;
 
 public class RefreshToken : BaseEntity
 {
     public Guid UserId { get; set; }
-
     public string TokenHash { get; set; } = string.Empty;
     public string JwtId { get; set; } = string.Empty;
 

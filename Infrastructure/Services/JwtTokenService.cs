@@ -32,18 +32,19 @@ namespace ims.Infrastructure.Services
             string? jti = null)
         {
             var jwtSection = _configuration.GetSection("Jwt");
-            var key = jwtSection["Key"] ?? throw new InvalidOperationException("JWT key is missing.");
-            var issuer = jwtSection["Issuer"] ?? throw new InvalidOperationException("JWT issuer is missing.");
-            var audience = jwtSection["Audience"] ?? throw new InvalidOperationException("JWT audience is missing.");
+            var key = jwtSection["Key"]?.Trim() ?? throw new InvalidOperationException("JWT key is missing.");
+            var issuer = jwtSection["Issuer"]?.Trim() ?? throw new InvalidOperationException("JWT issuer is missing.");
+            var audience = jwtSection["Audience"]?.Trim() ?? throw new InvalidOperationException("JWT audience is missing.");
             var minutes = int.Parse(jwtSection["AccessTokenMinutes"] ?? "60");
 
             var claims = new List<Claim>
         {
+           new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, user.UserName ?? user.Email ?? string.Empty),
             new(ClaimTypes.Email, user.Email ?? string.Empty),
             new(ClaimTypes.GivenName, user.FirstName),
-            new(ClaimTypes.Surname, user.LastName),
+            new(ClaimTypes.Surname, user.LastName),          
             new(JwtRegisteredClaimNames.Jti, jti ?? Guid.NewGuid().ToString())
         };
 

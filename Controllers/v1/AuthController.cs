@@ -1,6 +1,7 @@
 ﻿using ims.Application.DTOs;
 using ims.Application.DTOs.Auth;
 using ims.Application.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -9,7 +10,7 @@ using static ims.Shared.Constants.Permissions;
 namespace ims.Controllers.v1
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/[controller]")]  
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
@@ -35,12 +36,12 @@ namespace ims.Controllers.v1
             => _authService.RefreshTokenAsync(request);
 
         [HttpPost("logout")]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public Task<ApiResponseDto<object>> Logout([FromBody] RefreshTokenDto request)
             => _authService.LogoutAsync(request);
 
         [HttpPost("revoke-token")]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public Task<ApiResponseDto<object>> RevokeToken([FromBody] RefreshTokenDto request)
             => _authService.RevokeTokenAsync(request);
 
@@ -55,17 +56,18 @@ namespace ims.Controllers.v1
             => _authService.ResetPasswordAsync(request);
 
         [HttpPost("change-password")]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public Task<ApiResponseDto<object>> ChangePassword([FromBody] ChangePasswordDto request)
             => _authService.ChangePasswordAsync(GetUserId(), request);
 
         [HttpGet("me")]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public Task<ApiResponseDto<LoginResponseDto>> Me()
             => _authService.GetCurrentUserAsync(GetUserId());
 
+
         [HttpPut("profile")]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public Task<ApiResponseDto<LoginResponseDto>> UpdateProfile([FromBody] UpdateProfileDto request)
             => _authService.UpdateProfileAsync(GetUserId(), request);
 

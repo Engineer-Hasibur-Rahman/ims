@@ -1,17 +1,16 @@
 ﻿using FluentValidation;
 using ims.Application.DTOs.Auth;
 
-namespace ims.Application.Validators
+namespace ims.Application.Validators;
+
+public class RegisterRequestDtoValidator : AbstractValidator<RegisterRequestDto>
 {
-    public class RegisterRequestDtoValidator : AbstractValidator<RegisterRequestDto>
+    public RegisterRequestDtoValidator()
     {
-        public RegisterRequestDtoValidator()
-        {
-            RuleFor(x => x.FirstName).NotEmpty().MaximumLength(100);
-            RuleFor(x => x.LastName).NotEmpty().MaximumLength(100);
-            RuleFor(x => x.Email).NotEmpty().EmailAddress();
-            RuleFor(x => x.Password).NotEmpty().MinimumLength(6);
-            RuleFor(x => x.ConfirmPassword).Equal(x => x.Password);
-        }
+        RuleFor(x => x.FirstName).NotEmpty().MaximumLength(100);
+        RuleFor(x => x.LastName).NotEmpty().MaximumLength(100);
+        RuleFor(x => x.Email).NotEmpty().EmailAddress();
+        RuleFor(x => x.Password).NotEmpty().MinimumLength(6);
+        RuleFor(x => x.ConfirmPassword).Equal(x => x.Password);
     }
 }
