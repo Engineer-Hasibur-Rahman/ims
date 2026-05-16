@@ -4,8 +4,6 @@ namespace ims.Domain.Entities;
 
 public class Product : BaseEntity
     {
-        public new int Id { get; set; }
-
         public string Name { get; set; } = string.Empty;
         public string Slug { get; set; } = string.Empty;
         public string SKU { get; set; } = string.Empty;
@@ -31,11 +29,5 @@ public class Product : BaseEntity
         public string? Media { get; set; }
 
         public bool IsActive { get; set; } 
-
-        public new bool IsDeleted { get; set; }
-
-        public new DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-        public new DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 

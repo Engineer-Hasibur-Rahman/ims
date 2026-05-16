@@ -14,11 +14,15 @@ public class AppDbContext
     {
     }
 
-    public DbSet<Product> Products => Set<Product>();
-    public DbSet<Category> Categories => Set<Category>();
-    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
-    public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
-    public DbSet<Notification> Notifications => Set<Notification>();
+    public DbSet<Brand> Brands { get; set; }
+    public DbSet<Warehouse> Warehouses { get; set; }
+    public DbSet<Supplier> Suppliers { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
+    public DbSet<AuditLog> AuditLogs { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

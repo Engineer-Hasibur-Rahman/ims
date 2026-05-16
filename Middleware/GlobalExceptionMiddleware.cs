@@ -23,13 +23,25 @@ namespace ims.Middleware
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Unhandled exception occurred.");
 
+                context.Response.StatusCode = 500;
                 context.Response.ContentType = "application/json";
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
-                var response = ApiResponseDto<object>.Fail("An unexpected error occurred.");
-                await context.Response.WriteAsync(JsonSerializer.Serialize(response));
+                await context.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(new
+                {
+                    Success = false,
+                    ex.Message,   // 🔥 show real error
+                    Data = (object?)null,
+                    Errors = new[] { ex.ToString() }
+                }));
+
+                //_logger.LogError(ex, "Unhandled exception occurred.");
+
+                //context.Response.ContentType = "application/json";
+                //context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+                //var response = ApiResponseDto<object>.Fail("An unexpected error occurred.");
+                //await context.Response.WriteAsync(JsonSerializer.Serialize(response));
             }
         }
 

@@ -1,6 +1,6 @@
-﻿namespace ims.Controllers.v1
+﻿namespace ims.Controllers.v1;
+
+public class SuppliersController
 {
-    public class SuppliersController
-    {
-    }
+
 }

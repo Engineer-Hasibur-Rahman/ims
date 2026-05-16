@@ -1,4 +1,5 @@
-﻿using ims.Application.DTOs;
+﻿using Azure.Core;
+using ims.Application.DTOs;
 using ims.Application.DTOs.Auth;
 using ims.Application.Interfaces;
 using ims.Domain.Entities;
@@ -251,22 +252,24 @@ public class AuthService : IAuthService
 
         public async Task<ApiResponseDto<LoginResponseDto>> GetCurrentUserAsync(Guid userId)
         {
-            var user = await _userManager.FindByIdAsync(userId.ToString());
-            if (user is null)
-                return ApiResponseDto<LoginResponseDto>.Fail("User not found.");
+       
+        var user = await _userManager.FindByIdAsync(userId.ToString());
 
-            var roles = await _userManager.GetRolesAsync(user);
-            var permissions = await GetPermissionsForUserAsync(user);
+        if (user is null)
+            return ApiResponseDto<LoginResponseDto>.Fail("User not found.");
 
-            return ApiResponseDto<LoginResponseDto>.Ok(new LoginResponseDto
-            {
-                UserId = user.Id,
-                Email = user.Email ?? string.Empty,
-                FullName = user.FullName,
-                Roles = roles.ToList(),
-                Permissions = permissions.ToList()
-            }, "Current user retrieved successfully.");
-        }
+        var roles = await _userManager.GetRolesAsync(user);
+        var permissions = await GetPermissionsForUserAsync(user);
+
+        return ApiResponseDto<LoginResponseDto>.Ok(new LoginResponseDto
+        {
+            UserId = user.Id,
+            Email = user.Email ?? string.Empty,
+            FullName = user.FullName,
+            Roles = roles.ToList(),
+            Permissions = permissions.ToList()
+        }, "Current user retrieved successfully.");
+    }
 
         public async Task<ApiResponseDto<LoginResponseDto>> UpdateProfileAsync(Guid userId, UpdateProfileDto request)
         {
