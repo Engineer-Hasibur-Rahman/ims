@@ -32,7 +32,7 @@ namespace ims.Middleware
                     Success = false,
                     ex.Message,   // 🔥 show real error
                     Data = (object?)null,
-                    Errors = new[] { ex.ToString() }
+                    Errors = new[] { ex.ToString() } 
                 }));
 
                 //_logger.LogError(ex, "Unhandled exception occurred.");
